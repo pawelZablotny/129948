@@ -37,11 +37,16 @@
 #         l6.append((x, y))
 # print(l6)
 
-s1 = {1: 2, 2: 3, 3: 4, 4: 5}
-s2 = {}
-for key, value in s1.items():
-    s2[value] = key
-print(s1)
-print(s2)
-s3 = {v: k for k, v in s1.items()}
-print(s3)
+# s1 = {1: 2, 2: 3, 3: 4, 4: 5}
+# s2 = {}
+# for key, value in s1.items():
+#     s2[value] = key
+# print(s1)
+# print(s2)
+# s3 = {v: k for k, v in s1.items()}
+# print(s3)
+
+def rownanie_kwadratowe(a, b, c):
+    delta = b ** 2 -4 * a * c
+    if delta < 0:
+        print('bral pierwiastkow')
