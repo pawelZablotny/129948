@@ -28,12 +28,26 @@ products_szt = [x for x, szt in shopping.items() if szt == "szt"]
 print(shopping)
 print(products_szt)
 
-#Zadanie 4
+def czy_prostokatny(a, b, c):
+    boki = sorted([a, b, c])
+    return boki[0]**2 + boki[1]**2 == boki[2]**2
 
-def trojkat_prostakat(a, b, c):
-    if a**2 + b**2 == c**2:
-        print("Jest prostokatny")
-    elif b**2 + c**2 == a**2:
-        print("Jest prostokatny")
-    elif a**2 + c**2 == b**2:
-        print("Jest prostokatny")
+# Zadanie 5
+def pole_trapezu(a=10, b=5, h=3):
+    return (a + b) * h / 2
+
+# Zadanie 6
+def iloczyn_ciagu(a1=1, b=4, ile=10):
+    iloczyn = 1
+    for i in range(ile):
+        iloczyn *= a1
+        a1 *= b
+    return iloczyn
+
+# Zadanie 7
+def pierwiastek_liczby():
+    liczba = float(input("Podaj liczbę: "))
+    if liczba < 0:
+        return "Liczba nie może być ujemna!"
+    else:
+        return liczba**0.5
