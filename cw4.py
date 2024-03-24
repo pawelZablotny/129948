@@ -59,5 +59,9 @@ x, y = np.mgrid[0:5, 0:5]
 print(x)
 print(y)
 
-mat_diag_k = np.diag([a for a in range(5)])
+mat_diag_k = np.diag([a for a in range(5)], k=-1)
 print(mat_diag_k)
+
+z = np.fromiter(range(5), dtype='int32')
+print(z)
+
