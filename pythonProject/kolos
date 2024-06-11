@@ -1,0 +1,133 @@
+# 1.  (6pkt.) Za pomocą biblioteki matplotlib utwórz wykres liniowy funkcji 𝑓(𝑥) = cos⁡(𝑥)
+#  2𝑥
+#  , dla x z 
+# przedziału [5,14] z wartościami zmieniającymi się co 0,6. Ustaw zakres osi x na wartości 5 i 
+# 14, dodaj etykiety do osi x i y, ustaw tytuł wykresu. 
+# 2.  (8pkt) Za pomocą biblioteki pandas wczytaj zawartość pliku „flags.csv” do ramki danych, a 
+# następnie: 
+# • Utwórz i wyświetl nową ramkę danych składającą się z krajów należących do Europy 
+# (kolumna Landmass) 
+# • Na nowej ramce danych dokonaj grupowania danych po kolumnie „Religion” i wyświetl ilości 
+# wystąpienia danej religii w Europie 
+# • Na podstawie utworzonej grupy utwórz wykres słupkowy, dodaj tytuł oraz etykiety dla osi x i 
+# y. Dopasuj rozmiar wykresu tak aby był on widoczny w całości. 
+# 3.  (6pkt) Za pomocą biblioteki pandas wczytaj zawartość pliku „flags.csv” do ramki danych. 
+# Utwórz wykres kołowy przedstawiający procentowe dane dotyczące powierzchni na 
+# kontynentach, kolumny (Landmass, Area). Procentowe wartości mają być zaokrąglone do 
+# dwóch miejsc po przecinku, rozmiar czcionki 14. Dodaj tytuł i legendę.  
+# 4. (8pkt) Za pomocą matplotlib odwzoruj wykres z pliku grupa2.png. Wykres zapisz do 
+# pliku(imie_nazwisko_zad4.png) 
+# Każdy element wykresu ma być widoczny (dotyczy zadań z wykresami)
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+# # Define the function
+# def f(x):
+#     return np.cos(x) / (2 * x)
+#
+# # Define the range of x values
+# x = np.arange(5, 14.1, 0.6)
+#
+# # Calculate the corresponding y values
+# y = f(x)
+#
+# # Create the plot
+# plt.figure(figsize=(8, 6))
+# plt.plot(x, y, marker='o')
+#
+# # Set the x-axis range
+# plt.xlim(5, 14)
+#
+# # Add labels and title
+# plt.xlabel('x')
+# plt.ylabel('f(x)')
+# plt.title('Wykres funkcji f(x) = cos(x) / 2x')
+#
+# # Display the plot
+# plt.grid(True)
+# plt.show()
+
+
+
+# # Load the CSV file into a DataFrame
+# df = pd.read_csv('flags.csv', delimiter=';')
+#
+# # Create a new DataFrame consisting of countries belonging to Europe (Landmass = 'Europe')
+# europe_df = df[df['Landmass'] == 'Europe']
+#
+# # Group the new DataFrame by the 'Religion' column and count the occurrences of each religion
+# religion_counts = europe_df['Religion'].value_counts()
+#
+# # Display the grouped data
+# religion_counts_df = religion_counts.reset_index()
+# religion_counts_df.columns = ['Religion', 'Count']
+# print(religion_counts_df)
+#
+# # Create a bar plot based on the grouped data
+# plt.figure(figsize=(10, 6))
+# religion_counts.plot(kind='bar')
+#
+# # Add title and labels
+# plt.title('Count of Religions in Europe')
+# plt.xlabel('Religion')
+# plt.ylabel('Count')
+#
+# # Display the plot
+# plt.grid(True)
+# plt.show()
+
+
+# # Load the CSV file into a DataFrame
+# df = pd.read_csv('flags.csv', delimiter=';')
+#
+# # Group the data by 'Landmass' and sum the 'Area'
+# area_by_landmass = df.groupby('Landmass')['Area'].sum()
+#
+# # Calculate percentage values
+# area_percentage = (area_by_landmass / area_by_landmass.sum()) * 100
+# area_percentage = area_percentage.round(2)
+#
+# # Create a pie chart
+# plt.figure(figsize=(10, 8))
+# plt.pie(area_percentage, labels=area_percentage.index, autopct='%1.2f%%', textprops={'fontsize': 14})
+#
+# # Add a title and legend
+# plt.title('Percentage of Area by Continent', fontsize=16)
+# plt.legend(area_percentage.index, title="Continent", loc="center left", bbox_to_anchor=(1, 0.5))
+#
+# # Display the plot
+# plt.show()
+
+# Define the functions
+def f1(x):
+    return np.cos(x) * np.sin(x)
+
+def f2(x):
+    return np.cos(x) - np.tan(x)
+
+# Define the range of x values
+x = np.linspace(-1, 1)
+
+# Calculate the corresponding y values
+y1 = f1(x)
+y2 = f2(x)
+
+# Create the plot
+plt.figure(figsize=(10, 6))
+plt.plot(x, y1, label='cos(x)*sin(x)')
+plt.plot(x, y2, label='cos(x)-tan(x)')
+
+# Add labels, title, and legend
+plt.xlabel('x')
+plt.ylabel('wyniki funkcji')
+plt.title('Wykres dwóch funkcji')
+plt.legend()
+
+# Save the plot to a file
+plt.savefig('imie_nazwisko_zad4.png')
+
+# Display the plot
+plt.show()
+
