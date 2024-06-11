@@ -160,3 +160,47 @@ plt.title('Wykres funkcji f(x) = cos(x^2) + sin(2x^2)')
 plt.grid(True)
 plt.show()
 
+# Load the CSV file into a DataFrame
+df = pd.read_csv('flags.csv', delimiter=';')
+
+# Group the data by 'Zone' and count the number of countries in each zone
+zone_counts = df['Zone'].value_counts().reset_index()
+zone_counts.columns = ['Zone', 'Count']
+
+# Create a bar plot based on the grouped data
+plt.figure(figsize=(10, 6))
+plt.bar(zone_counts['Zone'], zone_counts['Count'])
+
+# Add title and labels
+plt.title('Number of Countries in Each Zone')
+plt.xlabel('Zone')
+plt.ylabel('Number of Countries')
+
+# Display the plot
+plt.grid(True)
+plt.show()
+
+# # Load the CSV file into a DataFrame
+# df = pd.read_csv('flags.csv', delimiter=';')
+#
+# # Create a new DataFrame consisting of records of countries belonging to the northern part of the earth (Zone = 'NE', 'NW')
+# northern_df = df[df['Zone'].isin(['NE', 'NW'])]
+#
+# # Group the new DataFrame by the 'Landmass' column and calculate the total area for each continent
+# area_by_landmass = northern_df.groupby('Landmass')['Area'].sum().reset_index()
+#
+# # Display the new DataFrame with total areas
+# print(area_by_landmass)
+#
+# # Create a bar plot based on the grouped data
+# plt.figure(figsize=(10, 6))
+# plt.bar(area_by_landmass['Landmass'], area_by_landmass['Area'])
+#
+# # Add title and labels
+# plt.title('Total Area by Continent for Northern Hemisphere Countries')
+# plt.xlabel('Continent')
+# plt.ylabel('Total Area')
+#
+# # Display the plot
+# plt.grid(True)
+# plt.show()
