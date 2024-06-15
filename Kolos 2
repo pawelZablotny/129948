@@ -1,0 +1,426 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+# Zadanie 1
+#
+# Za pomocą biblioteki matplotlib utwórz wykres liniowy funkcji
+# f(x) = x^2 + 2x^2, dla wartosci calkowitych x z przedzialu od [-5,5].
+# Ustaw zakres osi x na wartosci -5 i 5, dodaj etykiety do osi x i y,
+# ustaw tytul wykresu
+
+# def f(x):
+#     return x**2 + 2*x**2
+#
+# # Define the range of x values
+# x = np.arange(-5, 6)
+#
+# # Calculate the corresponding y values
+# y = f(x)
+#
+# # Create the plot
+# plt.figure(figsize=(8, 6))
+# plt.plot(x, y, marker='o')
+#
+# # Set the x-axis range
+# plt.xlim(-5, 5)
+#
+# # Add labels and title
+# plt.xlabel('x')
+# plt.ylabel('f(x)')
+# plt.title('Wykres funkcji f(x) = x^2 + 2x^2')
+#
+# # Display the plot
+# plt.grid(True)
+# plt.show()
+
+# Zadanie 1
+
+# Za pomocą biblioteki matplotlib utwórz wykres liniowy funkcji 𝑓(𝑥) = cos⁡(𝑥)
+# 2𝑥, dla x z
+# przedziału [5,14] z wartościami zmieniającymi się co 0,6. Ustaw zakres osi x na wartości 5 i
+# 14, dodaj etykiety do osi x i y, ustaw tytuł wykresu.
+# def f(x):
+#     return np.cos(x) / (2 * x)
+#
+# # Define the range of x values
+# x = np.arange(5, 14.1, 0.6)
+#
+# # Calculate the corresponding y values
+# y = f(x)
+#
+# # Create the plot
+# plt.figure(figsize=(8, 6))
+# plt.plot(x, y, marker='o')
+#
+# # Set the x-axis range
+# plt.xlim(5, 14)
+#
+# # Add labels and title
+# plt.xlabel('x')
+# plt.ylabel('f(x)')
+# plt.title('Wykres funkcji f(x) = cos(x) / 2x')
+#
+# # Display the plot
+# plt.grid(True)
+# plt.show()
+
+# Zadanie 2
+
+# Za pomocą biblioteki pandas wczytaj zawartość pliku „flags.csv” do ramki danych, a
+# następnie:
+# • Utwórz i wyświetl nową ramkę danych składającą się z krajów należących do Europy
+# (kolumna Landmass)
+# • Na nowej ramce danych dokonaj grupowania danych po kolumnie „Religion” i wyświetl ilości
+# wystąpienia danej religii w Europie
+# • Na podstawie utworzonej grupy utwórz wykres słupkowy, dodaj tytuł oraz etykiety dla osi x i
+# y. Dopasuj rozmiar wykresu tak aby był on widoczny w całości.
+
+# Load the CSV file into a DataFrame
+# df = pd.read_csv('flags.csv', delimiter=';')
+#
+# # Create a new DataFrame consisting of countries belonging to Europe (Landmass = 'Europe')
+# europe_df = df[df['Landmass'] == 'Europe']
+#
+# # Group the new DataFrame by the 'Religion' column and count the occurrences of each religion
+# religion_counts = europe_df['Religion'].value_counts()
+#
+# # Display the grouped data
+# religion_counts_df = religion_counts.reset_index()
+# religion_counts_df.columns = ['Religion', 'Count']
+# print(religion_counts_df)
+#
+# # Create a bar plot based on the grouped data
+# plt.figure(figsize=(10, 6))
+# religion_counts.plot(kind='bar')
+#
+# # Add title and labels
+# plt.title('Count of Religions in Europe')
+# plt.xlabel('Religion')
+# plt.ylabel('Count')
+#
+# # Display the plot
+# plt.grid(True)
+# plt.show()
+
+# Zadanie 2
+#
+# Za pomocą biblioteki pandas wczytaj zawartość pliku „flags.csv” do ramki danych, a
+# następnie:
+# • Utwórz i wyświetl nową ramkę danych składającą się z rekordow krajow nalezacych do polnocnej czesci zmiemi (kolumna Zone)
+# • Na nowej ramce danych dokonaj grupowania danych po kolumnie „Landmass” a nastepnie policz laczny obszar dla kazdego z kontynentow (kolumna area)
+# • Na podstawie utworzonej grupy utwórz wykres słupkowy, dodaj tytuł oraz etykiety dla osi x i
+# y. Dopasuj rozmiar wykresu tak aby był on widoczny w całości.
+
+# Load the CSV file into a DataFrame
+# df = pd.read_csv('flags.csv', delimiter=';')
+#
+# # Create a new DataFrame consisting of records of countries belonging to the northern part of the earth (Zone = 'NE', 'NW')
+# northern_df = df[df['Zone'].isin(['NE', 'NW'])]
+#
+# # Group the new DataFrame by the 'Landmass' column and calculate the total area for each continent
+# area_by_landmass = northern_df.groupby('Landmass')['Area'].sum().reset_index()
+#
+# # Display the new DataFrame with total areas
+# print(area_by_landmass)
+#
+# # Create a bar plot based on the grouped data
+# plt.figure(figsize=(10, 6))
+# plt.bar(area_by_landmass['Landmass'], area_by_landmass['Area'])
+#
+# # Add title and labels
+# plt.title('Total Area by Continent for Northern Hemisphere Countries')
+# plt.xlabel('Continent')
+# plt.ylabel('Total Area')
+#
+# # Display the plot
+# plt.grid(True)
+# plt.show()
+
+
+# Zadanie 3
+#
+# Za pomocą biblioteki pandas wczytaj zawartość pliku „flags.csv” do ramki danych.
+# Utwórz wykres kołowy przedstawiający procentowe dane dotyczące powierzchni na
+# kontynentach, kolumny (Landmass, Area). Procentowe wartości mają być zaokrąglone do
+# dwóch miejsc po przecinku, rozmiar czcionki 14. Dodaj tytuł i legendę.
+
+#
+# # Load the CSV file into a DataFrame
+# df = pd.read_csv('flags.csv', delimiter=';')
+#
+# # Group the data by 'Landmass' and sum the 'Area'
+# area_by_landmass = df.groupby('Landmass')['Area'].sum()
+#
+# # Calculate percentage values
+# area_percentage = (area_by_landmass / area_by_landmass.sum()) * 100
+# area_percentage = area_percentage.round(2)
+#
+# # Create a pie chart
+# plt.figure(figsize=(10, 8))
+# plt.pie(area_percentage, labels=area_percentage.index, autopct='%1.2f%%', textprops={'fontsize': 14})
+#
+# # Add a title and legend
+# plt.title('Percentage of Area by Continent', fontsize=16)
+# plt.legend(area_percentage.index, title="Continent", loc="center left", bbox_to_anchor=(1, 0.5))
+#
+# # Display the plot
+# plt.show()
+#
+
+
+# Zadanie 3
+# # Wczytaj plik CSV do ramki danych z prawidłowym separatorem
+# df = pd.read_csv('flags.csv', delimiter=';')
+#
+# # Grupuj dane według kolumny 'Zone' i zlicz liczbę krajów w każdej strefie
+# zone_counts = df['Zone'].value_counts().reset_index()
+# zone_counts.columns = ['Zone', 'Count']
+#
+# # Utwórz wykres słupkowy na podstawie pogrupowanych danych
+# plt.figure(figsize=(10, 6))
+# plt.bar(zone_counts['Zone'], zone_counts['Count'])
+#
+# # Dodaj tytuł oraz etykiety osi
+# plt.title('Number of Countries in Each Zone')
+# plt.xlabel('Zone')
+# plt.ylabel('Number of Countries')
+#
+# # Wyświetl wykres
+# plt.grid(True)
+# plt.show()
+
+# Zadanie 4
+
+# Define the functions
+# def f1(x):
+#     return np.cos(x) * np.sin(x)
+#
+# def f2(x):
+#     return np.cos(x) - np.tan(x)
+#
+# # Define the range of x values
+# x = np.linspace(-1, 1, 400)
+#
+# # Calculate the corresponding y values
+# y1 = f1(x)
+# y2 = f2(x)
+#
+# # Create the plot
+# plt.figure(figsize=(10, 6))
+# plt.plot(x, y1, label='cos(x)*sin(x)')
+# plt.plot(x, y2, label='cos(x)-tan(x)')
+#
+# # Add labels, title, and legend
+# plt.xlabel('x')
+# plt.ylabel('wyniki funkcji')
+# plt.title('Wykres dwóch funkcji')
+# plt.legend()
+#
+# # Save the plot to a file
+# plt.savefig('imie_zad4.png')
+#
+# # Display the plot
+# plt.show()
+
+
+# DODATKOWE!!!!!!!!!!!!!!!!!
+
+# Define the function
+# def f(x):
+#     return np.cos(x**2) + np.sin(2*x**2)
+#
+# # Define the range of x values
+# x = np.arange(-5, 6)
+#
+# # Calculate the corresponding y values
+# y = f(x)
+#
+# # Create the plot
+# plt.figure(figsize=(8, 6))
+# plt.plot(x, y, marker='o')
+#
+# # Set the x-axis range
+# plt.xlim(-5, 5)
+#
+# # Add labels and title
+# plt.xlabel('x')
+# plt.ylabel('f(x)')
+# plt.title('Wykres funkcji f(x) = cos(x^2) + sin(2x^2)')
+#
+# # Display the plot
+# plt.grid(True)
+# plt.show()
+
+
+# DODATKI
+#
+# DODATKI
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Zad1
+# Za pomocą biblioteki matplotlib utwórz wykres liniowy funkcji f(x) = sin(x) * x, dla x z przedziału [-3,3] z wartościami zmieniającymi się co 1/2.
+# Ustaw zakres osi x na wartości -3 i 3, dodaj etykiety do osi x i y, ustaw tytuł wykresu
+# def f(x):
+#     return np.sin(x) * x
+#
+# x_wart = np.arange(-3, 3.5, 0.5)
+# y_wart = f(x_wart)
+#
+# plt.figure(figsize=(10, 6))
+# plt.plot(x_wart, y_wart, marker='o')
+#
+# plt.xlim(-3, 3)
+#
+# plt.xlabel('x')
+# plt.ylabel('f(x) = sin(x) * x')
+# plt.title('Wykres funkcji f(x) = sin(x) * x')
+#
+# plt.grid(True)
+# plt.show()
+
+#Zad2
+# Za pomocą biblioteki pomocą pandas wczytaj zawartość pliku „automobile.csv” do ramki danych, a następnie:
+#	Utwórz i wyświetl nową ramkę danych składającą się z rekordów dla samochodów audi i dodge.
+#	Na nowej ramce danych dokonaj grupowania danych po kolumnie „Car model” a następnie policz sumę wartości dla tych samochodów (kolumna Price)
+#	Na podstawie utworzonej grupy utwórz wykres słupkowy, dodaj tytuł oraz etykiety dla osi x i y. Dopasuj rozmiar wykresu tak aby był on widoczny w całości.
+
+
+# df = pd.read_csv('automobile.csv', header=0, sep=';', decimal='.')
+#
+# filtered_df = df[df['Car model'].isin(['audi', 'dodge'])]
+#
+# grouped_df = filtered_df.groupby('Car model')['Price'].sum().reset_index()
+#
+# print("Nowa ramka danych audi i dodge:\n", filtered_df)
+# print(grouped_df)
+#
+# plt.figure(figsize=(12, 8))
+# plt.bar(grouped_df['Car model'], grouped_df['Price'], color=['blue', 'green'])
+#
+# plt.title('Sum of Prices for Audi and Dodge Car Models')
+# plt.xlabel('Car Model')
+# plt.ylabel('Total Price')
+#
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
+
+
+#Zad3
+# Za pomocą biblioteki pomocą pandas wczytaj zawartość pliku „automobile.csv” do ramki danych i  utwórz wykres kołowy przedstawiający procentową ilość samochodów
+# z danym rodzajem paliwa (kolumna Fuel-type). Procentowe wartości mają być zaokrąglone do dwóch miejsc po przecinku, rozmiar czcionki 14. Dodaj tytuł i legendę.
+
+# df = pd.read_csv('automobile.csv', header=0, sep=';', decimal='.')
+#
+# fuel_counts = df['Fuel-type'].value_counts()
+#
+# fuel_percentages = (fuel_counts / fuel_counts.sum()) * 100
+# fuel_percentages = fuel_percentages.round(2)
+#
+# plt.figure(figsize=(10, 7))
+# plt.pie(fuel_percentages, labels=fuel_percentages.index, autopct='%1.2f%%', textprops={'fontsize': 14})
+#
+# plt.title('Procentowy podział rodzajów paliwa', fontsize=16)
+# plt.legend(fuel_percentages.index, title="Rodzaj paliwa", fontsize=14)
+#
+# plt.show()
+
+
+#Zad1
+
+#Na wykresie wyświetl wykres liniowy funkcji f(x) = 1/x dla x ϵ [1, 20]. Dodaj etykietę do linii wykresu i wyświetl legendę.
+#Dodaj odpowiednie etykiety do osi wykresu (‘x’, ’f(x)’) oraz ustaw zakres osi na (0, 1) oraz (1, długość wektora x).
+
+# x = np.arange(1, 21, 1)
+# plt.plot(x, 1/x, label='f(x) = 1/x')
+# plt.xlabel('x')
+# plt.ylabel('f(x)')
+# plt.axis((0, 20, 0, 1))
+# plt.legend()
+# plt.title('Wykres funkcji f(x) = 1/x dla x[1,20]')
+# plt.show()
+
+#Zad2
+
+#Zmodyfikuj wykres z zadania 1 tak, żeby styl wykresu wyglądał tak jak na poniższym zrzucie ekranu.
+
+# x = np.arange(1, 21, 1)
+# plt.plot(x, 1/x, 'g>:', label='f(x) = 1/x' )
+# plt.xlabel('x')
+# plt.ylabel('f(x)')
+# plt.axis((0, 20, 0, 1))
+# plt.legend()
+# plt.title('Wykres funkcji f(x) = 1/x dla x[1,20]')
+# plt.show()
+
+#Zad3
+
+#Na jednym wykresie wygeneruj wykresy funkcji sin(x) oraz cos(x) dla x ϵ [0, 30] z krokiem 0.1.
+#Dodaj etykiety i legendę do wykresu.
+
+# x = np.arange(0, 30.1, .1)
+# plt.plot(x, np.sin(x), 'b', label='sin(x)')
+# plt.plot(x, np.cos(x), 'r', label='cos(x)')
+# plt.xlabel('x')
+# plt.ylabel('sin(x) cos(x)')
+# plt.legend(loc='upper right')
+# plt.title('Wykres sin(x), cos(x)')
+# plt.show()
+
+#Zad4
+
+#Korzystając ze zbioru danych Iris (https://archive.ics.uci.edu/ml/datasets/iris) wygeneruj wykres punktowy,
+#gdzie wektor x to wartość ‘sepal length’ a y to ‘sepal width’, dodaj paletę kolorów c na przykładzie listingu 6
+#a parametr s niech będzie wartością absolutną z różnicy wartości poszczególnych elementów wektorów x oraz y.
+
+# df = pd.read_csv('iris.data', header=0, sep=',', decimal='.')
+# print(df)
+# # przygotowanie wektora kolorów
+# colors = np.random.randint(0, 50, len(df.index))
+# # przygotowanie wektora z rozmiarami 'kropek'
+# scale = np.abs(df['sepal length'] - df['sepal width'])
+
+#Zad5
+
+#Korzystając z biblioteki pandas wczytaj zbiór danych z narodzinami dzieci przedstawiony w lekcji 8.
+#Następnie na jednym płótnie wyświetl 3 wykresy (jeden wiersz i 3 kolumny). Dodaj do wykresów stosowne etykiety.
+#Poustawiaj różne kolory dla wykresów.
+#1 wykres – wykres słupkowy przedstawiający ilość narodzonych dziewczynek i chłopców w całym okresie.
+#2 wykres – wykres liniowy, gdzie będą dwie linie, jedna dla ilości urodzonych kobiet,
+#druga dla mężczyzn dla każdego roku z osobna. Czyli y to ilość narodzonych kobiet lub mężczyzn (dwie linie), x to rok.
+#3 wykres – wykres słupkowy przedstawiający sumę urodzonych dzieci w każdym roku.
+
+
+# xlsx = pd.ExcelFile('imiona.xlsx')
+# df = pd.read_excel(xlsx, header=0)
+# print(df)
+# plt.subplot(1, 3, 1)
+# grouped = df.groupby('Plec')
+# etykiety = np.array(list(grouped.groups.keys()))
+# wartosci = list(grouped.agg('Liczba').sum())
+# plt.bar(x=etykiety, height=wartosci, color=['green', 'red'])
+# plt.xlabel('Płeć')
+# plt.ylabel('Liczba narodzonych dzieci')
+# # wykres 2
+# plt.subplot(1, 3, 2)
+# x = df['Rok'].unique()
+# kobiety = df[(df.Plec == 'K')].groupby('Rok').agg({'Liczba':['sum']}).values
+# mezczyzni = df[(df.Plec == 'M')].groupby('Rok').agg({'Liczba':['sum']}).values
+# plt.plot(x, kobiety, label="Kobiety")
+# plt.plot(x, mezczyzni, label="Mężczyźni")
+# plt.xlabel('Rok')
+# #
+# # # wykres 3
+# plt.subplot(1, 3, 3)
+# x = df['Rok'].unique()
+# y = df.groupby('Rok').agg('Liczba').sum()
+# plt.bar(x, y)
+# plt.xlabel('Rok')
+# # wyświetlamy cały wykres
+# plt.subplots_adjust(wspace=0.85)
+# plt.show()
