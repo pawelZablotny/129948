@@ -1,1 +1,92 @@
-ITS OVER 9000
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define N 500
+
+void generuj(short tab[], int n) {
+    for (int i = 0; i < n; i++) {
+        tab[i] = (rand() % 101) - 50; // generates numbers between -50 and 50
+    }
+}
+
+void wyswietl(short tab[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", tab[i]);
+    }
+    printf("\n");
+}
+
+short minimum(short tab[], int n) {
+    short min = tab[0];
+    for (int i = 1; i < n; i++) {
+        if (tab[i] < min) {
+            min = tab[i];
+        }
+    }
+    return min;
+}
+
+int main() {
+    int n;
+    short tab[N];
+
+    srand(time(NULL));
+
+    do {
+        printf("Podaj liczbe calkowita z przedzialu [1, %d]: ", N);
+        scanf("%d", &n);
+    } while (n < 1 || n > N);
+
+    generuj(tab, n);
+    printf("Wygenerowana tablica:\n");
+    wyswietl(tab, n);
+
+    short min = minimum(tab, n);
+    printf("Minimalna wartosc: %d\n", min);
+
+    return 0;
+}
+
+#include <stdio.h>
+
+int pierwszaCyfra(int n) {
+    if (n < 0) n = -n; // handle negative numbers
+    while (n >= 10) {
+        n /= 10;
+    }
+    return n;
+}
+
+int main() {
+    int n;
+    printf("Podaj liczbe calkowita: ");
+    scanf("%d", &n);
+
+    int pierwsza = pierwszaCyfra(n);
+    printf("Pierwsza cyfra liczby %d to %d\n", n, pierwsza);
+
+    return 0;
+}
+
+#include <stdio.h>
+
+void zamien(int *a, int *b) {
+    if (*b < *a) {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+}
+
+int main() {
+    int a, b;
+    printf("Podaj dwie liczby calkowite: ");
+    scanf("%d %d", &a, &b);
+
+    printf("Przed zamiana: a = %d, b = %d\n", a, b);
+    zamien(&a, &b);
+    printf("Po zamianie: a = %d, b = %d\n", a, b);
+
+    return 0;
+}
