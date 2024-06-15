@@ -1,0 +1,189 @@
+import math
+import random
+
+# Zadanie 1
+
+# Kolos a
+
+# result =0
+# for i in range(50, 64):
+#     result += math.pow(math.log(35 + math.exp(4)) + math.cos(i), 1/5)
+# print(round(result,2))
+
+# Kolos b
+
+# result = 0
+# for a in range(4, 10):
+#     result += math.pow(math.exp(a) + math.log2(24),1/4)
+# print(round(result, 2))
+
+# Kolos c
+
+# i = 50
+# result = math.pow(math.log(35 + math.exp(4)) + math.cos(i),1/5)
+# print(round(result,2))
+
+# Zadanie 2
+
+# Kolos a
+
+# def zad2(min, max, ile):
+#     try:
+#         if ile <= 0:
+#             raise ValueError
+#         i = 0
+#         lista = []
+#         while i != ile:
+#             e = random.randint(min, max)
+#             lista.append(e)
+#             i += 1
+#         print(lista)
+#
+#         j = 0
+#
+#         while j != len(lista):
+#             if lista[j] % 2 == 0:
+#                 j += 1
+#             else:
+#                 lista.pop(j)
+#         return lista
+#     except ValueError:
+#         'brak rozwiazania'
+# print(zad2(1, 20, 10))
+
+# Kolos b
+
+# def zad2(min, max, ile):
+#     try:
+#         if ile <= 0:
+#             raise ValueError
+#         lista = random.sample(range(min, max + 1), ile)
+#         slownik = {val: index  for index, val in enumerate(lista)}
+#
+#         print(lista)
+#         return slownik
+#     except ValueError:
+#         'brak rozwiazania'
+#
+# print(zad2(1, 20, 10))
+
+# Kolos c
+
+# def zad2(min, max, ile):
+#     try:
+#         if ile <= 0:
+#             raise ValueError
+#
+#         lista3 = random.sample(range(min, max + 1), ile)
+#         lista2 = [random.randint(min, max) for _ in range(ile)]
+#         print(lista3)
+#         print(lista2)
+#
+#         nowa_lista = [elem for index, elem in enumerate(lista2) if index % 2 == 0]
+#
+#         return nowa_lista
+#
+#     except ValueError:
+#         'blad rozwizania'
+#
+# print(zad2(1, 20, 10))
+
+# Zadanie 3
+
+# Kolos a
+
+# def zad3(nazwa_pliku):
+#
+#     file = open(nazwa_pliku, "r")
+#     lista = file.read()
+#     file.close()
+#
+#     lista = lista.replace('\n', '').split(' ')
+#     print(len(lista))
+#     slownik = {}
+#
+#     for i in range (len(lista)):
+#         licznik = 0
+#         for j in range (len(lista)):
+#             if lista[i] == lista[j]:
+#                 licznik += 1
+#             if licznik == 1:
+#                 slownik[lista[i]] = i
+#     return slownik, lista
+# print(zad3('liczby.txt'))
+
+# Kolos b
+
+# def zad3(nazwa_pliku):
+#     file = open(nazwa_pliku, "r")
+#     lista = file.read()
+#     file.close()
+#
+#     lista = lista.replace('\n', '').split(' ')
+#
+#     print("wczytana zawartosc z pliku", lista)
+#     slownik = {}
+#
+#     for i in range(len(lista)):
+#         licznik = 0
+#         for j in range(len(lista)):
+#             if lista[i] == lista[j]:
+#                 licznik += 1
+#             slownik[lista[i]] = licznik
+#
+#     max_freq = max(slownik.values())
+#
+#     most_freq = [key for key, value in slownik.items() if value == max_freq]
+#
+#     print("Najczesciej wystepujacy element: ")
+#     return most_freq
+#
+# print(zad3('liczby.txt'))
+
+# def zad3(nazwa_pliku):
+#     file = open(nazwa_pliku, "r")
+#     lista = file.read()
+#     file.close()
+#
+#     lista = lista.replace('\n', '').split(' ')
+#
+#     unique = []
+#     for liczba in lista:
+#         if liczba not in unique:
+#             unique.append(liczba)
+#
+#     wystepowanie = []
+#     for unikalnyelement in unique:
+#         count = 0
+#         for liczba in lista:
+#             if liczba == unikalnyelement:
+#                 count += 1
+#         wystepowanie.append(count)
+#
+#     return unique, wystepowanie
+#
+#
+# print(zad3('liczby.txt'))
+
+# Zadanie 4
+
+# def zad4():
+#     try:
+#         a = int(input('Podaj a: '))
+#         b = int(input('Podaj b: '))
+#         if (a <= 0 and b <= 0):
+#             raise ValueError
+#
+#         wynik = a * b
+#         wynik_bin = bin(wynik)[2:]
+#
+#         suma_bin = sum(int(bit) for bit in wynik_bin)
+#         return suma_bin
+#
+#
+#     except ValueError:
+#         'brak rozwiazanie'
+#
+# print(zad4())
+
+
