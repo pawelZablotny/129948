@@ -1,3 +1,203 @@
+import matplotlib.pyplot as plt
+
+# Dane do wykresu
+labels = ['A', 'B', 'C', 'D', 'E']
+sizes = [27, 48, 28, 24, 49]
+colors = ['#e5f5e0', '#e6550d', '#756bb1', '#3182bd', '#7b4173']
+explode = [0, 0.1, 0, 0, 0]
+# Tworzenie wykresu kołowego
+plt.pie(sizes, labels=sizes, colors=colors, explode=explode, autopct='%1.0f%%', startangle=90)
+
+# Dodanie legendy
+plt.legend(labels, loc="center left", bbox_to_anchor=(-0.2, 0.9), title="Legenda")
+
+# Ustawienie tytułu
+plt.title("Tytuł")
+
+
+
+Wyświetlenie wykresu
+plt.show()
+
+import matplotlib.pyplot as plt
+# Dane
+kategorie = ['Kategoria 1', 'Kategoria 2', 'Kategoria 3']
+wartosci = [10, 20, 15]
+colors = ['#e5f5e0', '#e6550d', '#756bb1']
+# Tworzenie wykresu słupkowego horyzontalnego
+plt.barh(kategorie, wartosci, color=colors, alpha=0.5)
+# Dodanie tytułu i etykiet osi
+plt.title('Wykres słupkowy horyzontalny')
+plt.xlabel('Wartości')
+plt.ylabel('Kategorie')
+# Wyświetlenie wykresu
+plt.show()
+import matplotlib.pyplot as plt
+
+# Dane do wykresu
+gazety = ['Rzeczpospolita', 'Gazeta Wyborcza', 'Super Express', 'Fakt']
+sprzedaz = [15000, 40000, 60000, 125000]
+kolory = ['#fc8d62', '#8da0cb', '#ffffb3', '#66c2a5']
+
+# Tworzenie wykresu słupkowego
+plt.barh(gazety, sprzedaz, color=kolory)
+
+# Dodanie tytułu
+plt.title('Wyniki sprzedaży dzienników ogólnopolskich za 1Q2023')
+
+# Dodanie etykiet osi X
+plt.xlabel('')
+
+# Zapisanie wykresu do pliku
+
+
+# Wyświetlenie wykresu
+plt.show()
+
+import matplotlib.pyplot as plt
+
+# Dane do wykresu
+gazety = ['Fakt', 'Super Express', 'Gazeta Wyborcza', 'Rzeczpospolita']
+sprzedaz = [125000, 60000, 40000, 15000]
+kolory = ['#66c2a5', '#fc8d62', '#8da0cb', '#fbb4ae']
+plt.figure(figsize=(12, 12))
+# Tworzenie wykresu słupkowego
+plt.bar(gazety, sprzedaz, color=kolory)
+
+# Obrót etykiet na osi X
+plt.xticks(rotation=45, ha="right")
+
+# Dodanie tytułu
+plt.title('Wyniki sprzedaży dzienników ogólnopolskich za 1Q2023')
+
+# Zapisanie wykresu do pliku
+
+
+# Wyświetlenie wykresu
+plt.show()
+
+import matplotlib.pyplot as plt
+liczba = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+dzien = ['Poniedzialek', 'Wtorek', 'Sroda', 'Czwartek']
+
+plt.plot(liczba, dzien, 'blue', linestyle="-", label="niebieski")
+
+plt.legend(title='legenda:')
+plt.show()
+
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.arange(14)
+dzien = [20, 50 , 40, 70]
+x2 = ['Poniedzialek', 'Wtorek', 'Sroda', 'Czwartek']
+y = np.cos(5 * x)
+plt.plot(x2, dzien, 'blue', linestyle=":", label="Stacja A")
+
+
+plt.legend(title='Legenda:')
+plt.show()
+
+import pandas as pd
+import matplotlib.pyplot as plt
+#
+df = pd.read_csv('ceny11.csv', delimiter=';')
+
+# Upewnij się, że kolumna 'Wartosc' jest typu numerycznego
+df['Wartosc'] = pd.to_numeric(df['Wartosc'].str.replace(',', '.'), errors='coerce')
+
+# Przekształć dane, aby każda kolumna odpowiadała osobnemu produktowi
+df_pivot = df.pivot(index='Rok', columns='Rodzaje produktów', values='Wartosc')
+
+# Utwórz wykres liniowy
+plt.figure(figsize=(12, 8))
+
+# Ręczne rysowanie linii dla każdego produktu
+plt.plot(df_pivot.index, df_pivot['pstrąg świeży niepatroszony - za 1 kg'], label='pstrąg świeży niepatroszony - za 1 kg', linestyle='-', marker='o')
+plt.plot(df_pivot.index, df_pivot['filety z morszczuka mrożone - za 1kg'], label='filety z morszczuka mrożone - za 1kg', linestyle='--', marker='s')
+plt.plot(df_pivot.index, df_pivot['śledź solony, niepatroszony - za 1kg'], label='śledź solony, niepatroszony - za 1kg', linestyle='-.', marker='^')
+
+# Ustawienia wykresu
+plt.title('Wykres cen produktów')
+plt.xlabel('Rok')
+plt.ylabel('Cena (w zł)')
+plt.legend(loc='best')  # Dodanie legendy w najlepszej lokalizacji
+plt.grid(True)  # Dodanie siatki
+
+# Zapisz wykres do pliku JPG
+plt.savefig('D:/Projekty/projekt_01/wykres_ceny.jpg', format='jpg')
+
+# Pokaż wykres
+plt.show()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Załaduj dane z pliku CSV
+
+df = pd.read_excel('licea12.xlsx')
+
+
+# Przygotowanie danych do wykresu
+kategorie = df['Nazwa']
+wartosci = df['Wartość']
+cmap = plt.get_cmap('viridis')
+colors = [cmap(i) for i in np.linspace(0, 1, len(kategorie))]
+
+
+# Tworzenie wykresu słupkowego
+plt.figure(figsize=(12, 8))
+
+plt.bar(kategorie, wartosci, color=colors, width=0.75)
+
+# Dodanie tytułu i etykiet
+plt.title('Wartości dla różnych województw w 2018 roku')
+plt.xlabel('Województwo')
+plt.ylabel('Wartość (w ob.)')
+plt.xticks(rotation=45, ha='right')  # Ustawienie rotacji etykiet na osi X
+plt.tight_layout()  # Dopasowanie układu
+
+# Wyświetlenie wykresu
+plt.show()
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Załaduj dane z pliku CSV
+df = pd.read_csv('ceny11.csv', delimiter=';')
+
+# Upewnij się, że kolumna 'Wartosc' jest typu numerycznego
+df['Wartosc'] = pd.to_numeric(df['Wartosc'].str.replace(',', '.'), errors='coerce')
+
+# Utwórz wykres liniowy
+plt.figure(figsize=(12, 8))
+
+# Ręczne rysowanie linii dla każdego produktu
+plt.plot(df[df['Rodzaje produktów'] == 'pstrąg świeży niepatroszony - za 1 kg']['Rok'],
+         df[df['Rodzaje produktów'] == 'pstrąg świeży niepatroszony - za 1 kg']['Wartosc'],
+         label='pstrąg świeży niepatroszony - za 1 kg', linestyle='-', marker='o')
+
+plt.plot(df[df['Rodzaje produktów'] == 'filety z morszczuka mrożone - za 1kg']['Rok'],
+         df[df['Rodzaje produktów'] == 'filety z morszczuka mrożone - za 1kg']['Wartosc'],
+         label='filety z morszczuka mrożone - za 1kg', linestyle='--', marker='s')
+
+plt.plot(df[df['Rodzaje produktów'] == 'śledź solony, niepatroszony - za 1kg']['Rok'],
+         df[df['Rodzaje produktów'] == 'śledź solony, niepatroszony - za 1kg']['Wartosc'],
+         label='śledź solony, niepatroszony - za 1kg', linestyle='-.', marker='^')
+
+# Ustawienia wykresu
+plt.title('Wykres cen produktów')
+plt.xlabel('Rok')
+plt.ylabel('Cena (w zł)')
+plt.legend(loc='best')  # Dodanie legendy w najlepszej lokalizacji
+plt.grid(True)  # Dodanie siatki
+
+
+
+# Pokaż wykres
+plt.show()
+
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -28,143 +228,143 @@ plt.savefig('wykres_pstraga.jpg', format='jpg', dpi=200)
 
 plt.show()
 
-# import numpy as np
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# import pandas as pd
-#
-# df = pd.read_excel('handel13.xlsx')
-#
-# paliwa_df = df[df['Wyszczególnienie'].str.contains('stacje paliw')]
-# paliwa_df = df[df['Wyszczególnienie'] =='stacje paliw']
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+df = pd.read_excel('handel13.xlsx')
+
+paliwa_df = df[df['Wyszczególnienie'].str.contains('stacje paliw')]
+paliwa_df = df[df['Wyszczególnienie'] =='stacje paliw']
 
 
-# cmap = plt.get_cmap('Set1')
-# colors = [cmap(i) for i in np.linspace(0, 1, len(paliwa_df))]
-#
-# plt.figure(figsize=(10, 8))
-#
-# plt.bar(paliwa_df['Rok'].astype(str), paliwa_df['Wartosc'], color=colors, width=0.8)
-#
-# # Dodanie tytułu i etykiet osi
-# plt.title('Ceny w poszegolnych latach')
-# plt.xlabel('Lata')
-#
-# plt.ylabel('Ceny')
-# # Wyświetlenie wykresu
-#
-# plt.grid(axis='y', linestyle='--', alpha=0.7)
-#
-# # Zapisz wykres jako plik JPG
-# plt.savefig('paliwa_ceny.jpg', format='jpg', dpi=200)
-#
-# plt.show()
-#
-#
+cmap = plt.get_cmap('Set1')
+colors = [cmap(i) for i in np.linspace(0, 1, len(paliwa_df))]
 
-# import numpy as np
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# import pandas as pd
-#
-# df = pd.read_excel('ceny14.xlsx')
-#
-# marchew_df = df[df['Rodzaje towarów i usług'].str.contains('marchew')]
-#
-# cmap = plt.get_cmap('Set1')
-# colors = [cmap(i) for i in np.linspace(0, 1, len(marchew_df))]
-#
-# plt.figure(figsize=(15, 8))
-#
-# plt.bar(marchew_df['Miesiące'].astype(str), marchew_df['Wartosc'], color=colors, width=0.8)
-#
-# plt.title('Ceny w poszegolnych miesiacach')
-# plt.xlabel('Miesiace')
-#
-# plt.ylabel('Ceny')
-# # Wyświetlenie wykresu
-#
-# plt.grid(axis='y', linestyle='--', alpha=0.7)
-#
-# # Zapisz wykres jako plik JPG
-# plt.savefig('marchew.jpg', format='jpg', dpi=200)
-#
-# plt.show()
+plt.figure(figsize=(10, 8))
 
-# import pandas as pd
-# import matplotlib.pyplot as plt
-#
-# # Załaduj dane z pliku CSV
-# df = pd.read_csv('restauracje14.csv', delimiter=';')
-#
-# # Upewnij się, że kolumny są w odpowiednich typach
-# df.columns = df.columns.str.strip()  # Usuń ewentualne białe znaki z nagłówków
-#
-# # Sprawdź typy kolumn
-# print(df.dtypes)
-#
-# # Konwertuj kolumny z wartościami na liczby, jeśli są typu string
-# for column in df.columns[1:]:
-#     if df[column].dtype == 'object':  # Sprawdź, czy kolumna jest tekstowa
-#         df[column] = pd.to_numeric(df[column].str.replace(' ', ''), errors='coerce')
-#
-# # Wybierz dane dotyczące wybranych województw
-# selected_regions = ['LUBUSKIE', 'ŚLĄSKIE', 'WIELKOPOLSKIE']
-# df_selected = df[df['Województwo'].str.upper().isin(selected_regions)]
-#
-# # Stwórz wykres liniowy
-# plt.figure(figsize=(12, 8))
-#
-# # Kolory i style dla linii
-# colors = ['blue', 'green', 'red']
-# linestyles = ['-', '--', '-.']
-#
-# # Twórz wykresy liniowe dla każdego wybranego województwa
-# for i, region in enumerate(selected_regions):
-#     subset = df_selected[df_selected['Województwo'].str.upper() == region]
-#     plt.plot(subset.columns[1:], subset.iloc[0, 1:], label=region, color=colors[i], linestyle=linestyles[i], marker='o')
-#
-# # Dodaj tytuł i etykiety osi
-# plt.title('Dane o restauracjach w wybranych województwach (2016-2021)')
-# plt.xlabel('Rok')
-# plt.ylabel('Liczba restauracji')
-# plt.legend()
-# plt.grid(True)
-#
-# # Zapisz wykres do pliku PDF
-# plt.savefig('wykres_restauracje.pdf')
-#
-# # Pokaż wykres
-# plt.show()
-#
-# import pandas as pd
-# import matplotlib.pyplot as plt
-#
-# # Załaduj dane z pliku Excel
-# df = pd.read_excel('licea11.xlsx')
-#
-# # Sprawdź strukturę danych
-# print(df.head())
-#
-# # Utwórz wykres słupkowy
-# plt.figure(figsize=(10, 6))
-#
-# # Twórz wykres słupkowy z latami na osi poziomej
-# plt.bar(df['Nazwa'], df['Wartość'], color='skyblue', edgecolor='black')
-#
-#
-#
-# # Dodaj tytuł i etykiety osi
-# plt.title('Wartość obiektów w różnych województwach w 2018 roku')
-# plt.xlabel('Województwo')
-# plt.ylabel('Wartość')
-# plt.xticks(rotation=45, ha='right')  # Ustawienie kątów etykiet osi X dla lepszej czytelności
-# plt.grid(axis='y', linestyle='--', alpha=0.7)
-#
-# # Zapisz wykres do pliku PDF
-# plt.savefig('wykres_licea11.jpg', format='jpg', dpi=200)
-#
-# # Pokaż wykres
-# plt.show()
-#
-#
+plt.bar(paliwa_df['Rok'].astype(str), paliwa_df['Wartosc'], color=colors, width=0.8)
+
+# Dodanie tytułu i etykiet osi
+plt.title('Ceny w poszegolnych latach')
+plt.xlabel('Lata')
+
+plt.ylabel('Ceny')
+# Wyświetlenie wykresu
+
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+# Zapisz wykres jako plik JPG
+plt.savefig('paliwa_ceny.jpg', format='jpg', dpi=200)
+
+plt.show()
+
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+df = pd.read_excel('ceny14.xlsx')
+
+marchew_df = df[df['Rodzaje towarów i usług'].str.contains('marchew')]
+
+cmap = plt.get_cmap('Set1')
+colors = [cmap(i) for i in np.linspace(0, 1, len(marchew_df))]
+
+plt.figure(figsize=(15, 8))
+
+plt.bar(marchew_df['Miesiące'].astype(str), marchew_df['Wartosc'], color=colors, width=0.8)
+
+plt.title('Ceny w poszegolnych miesiacach')
+plt.xlabel('Miesiace')
+
+plt.ylabel('Ceny')
+# Wyświetlenie wykresu
+
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+# Zapisz wykres jako plik JPG
+plt.savefig('marchew.jpg', format='jpg', dpi=200)
+
+plt.show()
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Załaduj dane z pliku CSV
+df = pd.read_csv('restauracje14.csv', delimiter=';')
+
+# Upewnij się, że kolumny są w odpowiednich typach
+df.columns = df.columns.str.strip()  # Usuń ewentualne białe znaki z nagłówków
+
+# Sprawdź typy kolumn
+print(df.dtypes)
+
+# Konwertuj kolumny z wartościami na liczby, jeśli są typu string
+for column in df.columns[1:]:
+    if df[column].dtype == 'object':  # Sprawdź, czy kolumna jest tekstowa
+        df[column] = pd.to_numeric(df[column].str.replace(' ', ''), errors='coerce')
+
+# Wybierz dane dotyczące wybranych województw
+selected_regions = ['LUBUSKIE', 'ŚLĄSKIE', 'WIELKOPOLSKIE']
+df_selected = df[df['Województwo'].str.upper().isin(selected_regions)]
+
+# Stwórz wykres liniowy
+plt.figure(figsize=(12, 8))
+
+# Kolory i style dla linii
+colors = ['blue', 'green', 'red']
+linestyles = ['-', '--', '-.']
+
+# Twórz wykresy liniowe dla każdego wybranego województwa
+for i, region in enumerate(selected_regions):
+    subset = df_selected[df_selected['Województwo'].str.upper() == region]
+    plt.plot(subset.columns[1:], subset.iloc[0, 1:], label=region, color=colors[i], linestyle=linestyles[i], marker='o')
+
+# Dodaj tytuł i etykiety osi
+plt.title('Dane o restauracjach w wybranych województwach (2016-2021)')
+plt.xlabel('Rok')
+plt.ylabel('Liczba restauracji')
+plt.legend()
+plt.grid(True)
+
+# Zapisz wykres do pliku PDF
+plt.savefig('wykres_restauracje.pdf')
+
+# Pokaż wykres
+plt.show()
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Załaduj dane z pliku Excel
+df = pd.read_excel('licea11.xlsx')
+
+# Sprawdź strukturę danych
+print(df.head())
+
+# Utwórz wykres słupkowy
+plt.figure(figsize=(10, 6))
+
+# Twórz wykres słupkowy z latami na osi poziomej
+plt.bar(df['Nazwa'], df['Wartość'], color='skyblue', edgecolor='black')
+
+
+
+# Dodaj tytuł i etykiety osi
+plt.title('Wartość obiektów w różnych województwach w 2018 roku')
+plt.xlabel('Województwo')
+plt.ylabel('Wartość')
+plt.xticks(rotation=45, ha='right')  # Ustawienie kątów etykiet osi X dla lepszej czytelności
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+# Zapisz wykres do pliku PDF
+plt.savefig('wykres_licea11.jpg', format='jpg', dpi=200)
+
+# Pokaż wykres
+plt.show()
+
+
