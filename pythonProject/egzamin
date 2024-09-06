@@ -1,0 +1,170 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+df = pd.read_excel('ceny12.xlsx')
+
+pstrag_df = df[df['Rodzaje produktów'].str.contains('pstrąg')]
+
+cmap = plt.get_cmap('Set1')
+colors = [cmap(i) for i in np.linspace(0, 1, len(pstrag_df))]
+
+plt.figure(figsize=(10, 8))
+
+plt.bar(pstrag_df['Rok'].astype(str), pstrag_df['Wartosc'], color=colors, width=0.9)
+
+# Dodanie tytułu i etykiet osi
+plt.title('Ceny w poszegolnych latach')
+plt.xlabel('Lata')
+
+plt.ylabel('Ceny')
+# Wyświetlenie wykresu
+
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+# Zapisz wykres jako plik JPG
+plt.savefig('wykres_pstraga.jpg', format='jpg', dpi=200)
+
+plt.show()
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# import pandas as pd
+#
+# df = pd.read_excel('handel13.xlsx')
+#
+# paliwa_df = df[df['Wyszczególnienie'].str.contains('stacje paliw')]
+# paliwa_df = df[df['Wyszczególnienie'] =='stacje paliw']
+
+
+# cmap = plt.get_cmap('Set1')
+# colors = [cmap(i) for i in np.linspace(0, 1, len(paliwa_df))]
+#
+# plt.figure(figsize=(10, 8))
+#
+# plt.bar(paliwa_df['Rok'].astype(str), paliwa_df['Wartosc'], color=colors, width=0.8)
+#
+# # Dodanie tytułu i etykiet osi
+# plt.title('Ceny w poszegolnych latach')
+# plt.xlabel('Lata')
+#
+# plt.ylabel('Ceny')
+# # Wyświetlenie wykresu
+#
+# plt.grid(axis='y', linestyle='--', alpha=0.7)
+#
+# # Zapisz wykres jako plik JPG
+# plt.savefig('paliwa_ceny.jpg', format='jpg', dpi=200)
+#
+# plt.show()
+#
+#
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# import pandas as pd
+#
+# df = pd.read_excel('ceny14.xlsx')
+#
+# marchew_df = df[df['Rodzaje towarów i usług'].str.contains('marchew')]
+#
+# cmap = plt.get_cmap('Set1')
+# colors = [cmap(i) for i in np.linspace(0, 1, len(marchew_df))]
+#
+# plt.figure(figsize=(15, 8))
+#
+# plt.bar(marchew_df['Miesiące'].astype(str), marchew_df['Wartosc'], color=colors, width=0.8)
+#
+# plt.title('Ceny w poszegolnych miesiacach')
+# plt.xlabel('Miesiace')
+#
+# plt.ylabel('Ceny')
+# # Wyświetlenie wykresu
+#
+# plt.grid(axis='y', linestyle='--', alpha=0.7)
+#
+# # Zapisz wykres jako plik JPG
+# plt.savefig('marchew.jpg', format='jpg', dpi=200)
+#
+# plt.show()
+
+# import pandas as pd
+# import matplotlib.pyplot as plt
+#
+# # Załaduj dane z pliku CSV
+# df = pd.read_csv('restauracje14.csv', delimiter=';')
+#
+# # Upewnij się, że kolumny są w odpowiednich typach
+# df.columns = df.columns.str.strip()  # Usuń ewentualne białe znaki z nagłówków
+#
+# # Sprawdź typy kolumn
+# print(df.dtypes)
+#
+# # Konwertuj kolumny z wartościami na liczby, jeśli są typu string
+# for column in df.columns[1:]:
+#     if df[column].dtype == 'object':  # Sprawdź, czy kolumna jest tekstowa
+#         df[column] = pd.to_numeric(df[column].str.replace(' ', ''), errors='coerce')
+#
+# # Wybierz dane dotyczące wybranych województw
+# selected_regions = ['LUBUSKIE', 'ŚLĄSKIE', 'WIELKOPOLSKIE']
+# df_selected = df[df['Województwo'].str.upper().isin(selected_regions)]
+#
+# # Stwórz wykres liniowy
+# plt.figure(figsize=(12, 8))
+#
+# # Kolory i style dla linii
+# colors = ['blue', 'green', 'red']
+# linestyles = ['-', '--', '-.']
+#
+# # Twórz wykresy liniowe dla każdego wybranego województwa
+# for i, region in enumerate(selected_regions):
+#     subset = df_selected[df_selected['Województwo'].str.upper() == region]
+#     plt.plot(subset.columns[1:], subset.iloc[0, 1:], label=region, color=colors[i], linestyle=linestyles[i], marker='o')
+#
+# # Dodaj tytuł i etykiety osi
+# plt.title('Dane o restauracjach w wybranych województwach (2016-2021)')
+# plt.xlabel('Rok')
+# plt.ylabel('Liczba restauracji')
+# plt.legend()
+# plt.grid(True)
+#
+# # Zapisz wykres do pliku PDF
+# plt.savefig('wykres_restauracje.pdf')
+#
+# # Pokaż wykres
+# plt.show()
+#
+# import pandas as pd
+# import matplotlib.pyplot as plt
+#
+# # Załaduj dane z pliku Excel
+# df = pd.read_excel('licea11.xlsx')
+#
+# # Sprawdź strukturę danych
+# print(df.head())
+#
+# # Utwórz wykres słupkowy
+# plt.figure(figsize=(10, 6))
+#
+# # Twórz wykres słupkowy z latami na osi poziomej
+# plt.bar(df['Nazwa'], df['Wartość'], color='skyblue', edgecolor='black')
+#
+#
+#
+# # Dodaj tytuł i etykiety osi
+# plt.title('Wartość obiektów w różnych województwach w 2018 roku')
+# plt.xlabel('Województwo')
+# plt.ylabel('Wartość')
+# plt.xticks(rotation=45, ha='right')  # Ustawienie kątów etykiet osi X dla lepszej czytelności
+# plt.grid(axis='y', linestyle='--', alpha=0.7)
+#
+# # Zapisz wykres do pliku PDF
+# plt.savefig('wykres_licea11.jpg', format='jpg', dpi=200)
+#
+# # Pokaż wykres
+# plt.show()
+#
+#
